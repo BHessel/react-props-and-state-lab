@@ -6,7 +6,6 @@ import PetBrowser from './PetBrowser'
 class App extends React.Component {
   constructor() {
     super()
-
     this.state = {
       pets: [],
       filters: {
@@ -15,16 +14,31 @@ class App extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <div className="ui container">
+onChangeType = (filter) => this.setState({filters: {type: filter}})
+
+  
+getPets(){
+  const petsURL = '/api/pets'
+  fetch(petsURL).then(r => r.json()).then((data) => this.setState.pets)
+}
+  
+componentDidMount() {
+  this.getPets()
+}
+
+render() {
+  return (
+    <div className="ui container">
         <header>
           <h1 className="ui dividing header">React Animal Shelter</h1>
         </header>
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters
+                onChangeType={this.onChangeType}
+                // onFindPetsClick={}
+                />
             </div>
             <div className="twelve wide column">
               <PetBrowser />
