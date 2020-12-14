@@ -17,7 +17,7 @@ class App extends React.Component {
 onChangeType = (filter) => this.setState({filters: {type: filter}})
 
   
-getPets(){
+onFindPetsClick(){
   const petsURL = '/api/pets'
   fetch(petsURL).then(r => r.json()).then((data) => this.setState.pets)
 }
@@ -37,7 +37,7 @@ render() {
             <div className="four wide column">
               <Filters
                 onChangeType={this.onChangeType}
-                // onFindPetsClick={}
+                onFindPetsClick={this.componentDidMount}
                 />
             </div>
             <div className="twelve wide column">
